@@ -12,7 +12,8 @@ jvmPath = 'C:\\Program Files\\Java\\jdk1.8.0_161\\jre\\bin\\server\\jvm.dll'
 # 配置jvm并启动
 jpype.startJVM(jvmPath,'-ea','-Djava.class.path=%s' % jarpath)
 # 加载类到jvm 返回类实例
-nseadb = jpype.JClass('com.xmxe.Read')
+NseadbClass = jpype.JClass('com.xmxe.Read')
+nseadb = NseadbClass()
 # jpype.java.lang.System.out.println('hello world')
 
 # 定义java.util.Date类型
@@ -20,7 +21,7 @@ date = jpype.java.text.SimpleDateFormat('yyyy-MM-dd HH:mm:ss').parse('2022-01-01
 # 加载jar包中的某个类
 mode = jpype.JClass('com.xmxe.RtdbModeEnum')
 # 调用接口
-response = nseadb.method('aaa',date,mode)
+response = nseadb.method('aaa',date,mode.PREVIOUS)
 print(response)
 
 jpype.shutdownJVM()
